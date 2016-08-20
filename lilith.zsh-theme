@@ -10,7 +10,7 @@ function _user_host() {
 
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
-PROMPT='$(_user_host)%{$FG[063]%}%2~%{$reset_color%} $(git_prompt_info)%{$reset_color%}%B%{$fg[red]%}⟣%{$reset_color%}%b '
+PROMPT='%{$fg[red]%}☨%{$reset_color%} $(_user_host)%{$FG[063]%}%~%{$reset_color%} $(git_prompt_info)%{$reset_color%}%B '
 RPS1="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$FG[228]%}"
