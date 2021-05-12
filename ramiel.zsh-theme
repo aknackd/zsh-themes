@@ -15,7 +15,12 @@ prompt_cwd() {
     prompt_shrink_path "$(print -P %~)"
 }
 
-PROMPT='$CYAN%m$RESET $YELLOW$(prompt_cwd)$(git_prompt_info) $RESET'
+# Show exit code in prompt if not zero
+show_exit_code() {
+    printf %s "%(0?;; ${RED}%?${RESET})"
+}
+
+PROMPT='$CYAN%m$RESET $YELLOW$(prompt_cwd)$(git_prompt_info)$RESET$(show_exit_code) > '
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" ${GREEN}$(printf "\ufb2b") ${CYAN}"
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
