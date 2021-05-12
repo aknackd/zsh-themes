@@ -1,6 +1,7 @@
 GREEN="%{$fg_bold[green]%}"
 YELLOW="%{$fg_bold[yellow]%}"
 CYAN="%{$fg_bold[cyan]%}"
+BLUE="%{$fg_bold[blue]%}"
 RED="%{$fg_bold[red]%}"
 RESET="%{$reset_color%}"
 
@@ -15,12 +16,14 @@ prompt_cwd() {
     prompt_shrink_path "$(print -P %~)"
 }
 
-# Show exit code in prompt if not zero
-show_exit_code() {
-    printf %s "%(0?;; ${RED}%?${RESET})"
+# Conditionally display the number of jobs and exit code
+show_jobs_and_exit_code() {
+    # If there's at least one job AND the exit code is non-zero, display ${num_jobs}:${exit_code}
+    # Otherwise if exit code is non-zero, display ${exit_code}
+    printf %s "%(1j.%(0?. ${BLUE}%j${RESET}. ${BLUE}%j${YELLOW}:${RED}%?${RESET}).%(0?.. ${RED}%?${RESET}))"
 }
 
-PROMPT='$CYAN%m$RESET $YELLOW$(prompt_cwd)$(git_prompt_info)$RESET$(show_exit_code) > '
+PROMPT='$CYAN%m$RESET $YELLOW$(prompt_cwd)$(git_prompt_info)$RESET$(show_jobs_and_exit_code) > '
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" ${GREEN}$(printf "\ufb2b") ${CYAN}"
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
