@@ -25,7 +25,7 @@ show_jobs_and_exit_code() {
 
 PROMPT='$CYAN%m$RESET $YELLOW$(prompt_cwd)$(git_prompt_info)$RESET$(show_jobs_and_exit_code) > '
 
-ZSH_THEME_GIT_PROMPT_PREFIX=" ${GREEN}$(printf "\ufb2b") ${CYAN}"
+ZSH_THEME_GIT_PROMPT_PREFIX=" ${GREEN}$(printf "\ue725") ${CYAN}"
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY=" $RED±$RESET"
 ZSH_THEME_GIT_PROMPT_CLEAN=" $GREEN✓$RESET"
